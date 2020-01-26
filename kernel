@@ -1,0 +1,83 @@
+1..download  the latest kernel from kernel.org
+2..Verify kernel
+
+3..Untar the kernel tarball
+4..Copy existing Linux kernel config file
+5..Compile and build Linux kernel 5.4.1
+
+7..6..Install Linux kernel and modules (drivers)
+8..Update Grub configuration
+9..Reboot the system
+...................................code here ----------------
+
+after you dowload kernel from kernel.org
+(IF YOU DOWNLOAD 5.4.1 VERSION KERNEL IF YOU CHANGE THE VERSION THE YOU WILL BE CHANGE THE 
+
+$ unxz -v linux-X.X.X.tar.xz
+)
+{
+HERE X.X.X means 5.4.1
+if you take other kenel version 
+then here  write your version  
+}
+
+Step 2. Extract tar.xz file
+command ::
+
+$ unxz -v linux-5.4.1.tar.xz
+ 		OR
+$ xz -d -v linux-5.4.1.tar.xz
+
+Step 3 .Verify Linux kernel tartball with pgp
+$ wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.4.1.tar.sign
+
+Try to verify it:
+$ gpg --verify linux-5.4.1.tar.sign
+
+Sample outputs:
+
+gpg: assuming signed data in 'linux-5.4.1.tar'
+gpg: Signature made Sun 12 Aug 2018 04:00:28 PM CDT
+gpg:                using RSA key 79BE3E4300411886
+gpg: Can't check signature: No public key
+
+How to install GCC and development tools on a Fedora Linux
+Run the following dnf command:
+
+
+$ sudo dnf group install "Development Tools"
+$ sudo dnf install ncurses-devel bison flex elfutils-libelf-devel openssl-devel 
+
+$ sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev
+
+$ make menuconfig
+
+
+Step 5. How to compile a Linux Kernel
+Start compiling and tocreate a compressed kernel image, enter:
+$ make
+
+To speed up compile time, pass the -j as follows:
+## use 4 core/thread ##
+$ make -j 4
+## get thread or cpu core count using nproc command ##
+$ make -j $(nproc)
+
+
+Install the Linux kernel modules
+::::
+$ sudo make modules_install
+
+
+Install the Linux kernel
+So far we have compiled the Linux kernel and installed kernel modules. It is time to install the kernel itself:
+$ sudo make install
+
+
+
+
+
+last line reboot
+$ reboot
+
+
